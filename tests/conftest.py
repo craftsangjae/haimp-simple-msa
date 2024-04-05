@@ -3,6 +3,8 @@ from Crypto.PublicKey import RSA
 import tempfile
 import os
 
+from src.tokens import TokenGenerator
+
 
 @pytest.fixture
 def given_private_key():
@@ -40,3 +42,8 @@ def given_public_pem_file(given_public_pem):
         f.write(given_public_pem)
     yield fpath
     os.remove(fpath)
+
+
+@pytest.fixture
+def given_token_generator(given_private_pem) -> TokenGenerator:
+    return TokenGenerator(given_private_pem)

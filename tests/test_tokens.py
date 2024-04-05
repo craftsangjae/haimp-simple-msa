@@ -1,6 +1,6 @@
 import pytest
 
-from src.domains import TokenType
+from src.domains import TokenType, User, Token
 from src.tokens import create_jwt_token
 import jwt
 
@@ -43,3 +43,21 @@ def test_create_jwt_token_expired_case(given_private_pem, given_public_pem):
     # then
     with pytest.raises(jwt.exceptions.ExpiredSignatureError):
         jwt.decode(access_token, given_public_pem, algorithms=["RS256"])
+
+
+def test_generate_token(given_token_generator, given_public_pem):
+    # user
+    user = User(
+        name='sangjae',
+        role='admin',
+        group='haimp-developer'
+    )
+
+    token = given_token_generator.generate_token(user)
+
+    assert isinstance(token, Token)
+
+    access_payload = jwt.decode(token.access, given_public_pem, algorithms=['RS256'])
+    refresh_payload = jwt.decode(token.refresh, given_public_pem, algorithms=['RS256'])
+
+    assert access_payload['exp'] < refresh_payload['exp']

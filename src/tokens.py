@@ -2,19 +2,21 @@ from typing import Dict
 
 import jwt
 
-from src.auth import load_pem
 from src.domains import User, Token, TokenType
 from datetime import datetime
 
 
 class TokenGenerator:
+    """ Jwt Token을 생성합니다.
+    """
+
     def __init__(
         self,
-        pem_file: str,
+        private_key: bytes,
         access_token_lifetime: int = 86400,  # 하루
         refresh_token_lifetime: int = 2592000,  # 한달
     ):
-        self.private_key = load_pem(pem_file)
+        self.private_key = private_key
         self.access_token_lifetime = access_token_lifetime
         self.refresh_token_lifetime = refresh_token_lifetime
 
