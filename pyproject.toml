@@ -1,0 +1,18 @@
+[tool.poetry]
+name = "simple-msa"
+version = "0.0.1"
+description = "안녕 단순한설계"
+authors = ["craftsangjae <craftsangjae@gmail.com>"]
+readme = "README.md"
+packages = [{include="src"}]
+
+[tool.poetry.dependencies]
+python = "^3.11,<3.12"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
