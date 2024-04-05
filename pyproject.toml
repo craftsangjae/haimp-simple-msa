@@ -13,6 +13,7 @@ pyjwt = "^2.8.0"
 cryptography = "^42.0.5"
 sqlalchemy = "^2.0.29"
 aiosqlite = "^0.20.0"
+pre-commit = "^3.7.0"
 
 
 [tool.poetry.group.dev.dependencies]

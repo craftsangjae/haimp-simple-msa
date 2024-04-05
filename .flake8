@@ -1,0 +1,16 @@
+[flake8]
+max-line-length = 100
+extend-ignore =
+    E203,
+    E501,
+    W503
+exclude =
+    .git,
+    .hg,
+    .mypy_cache,
+    .tox,
+    .venv,
+    _build,
+    buck-out,
+    build,
+    dist
